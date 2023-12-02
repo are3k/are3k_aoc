@@ -29,14 +29,15 @@ def star2():
   with open('input.txt', 'r') as file:
     sum = 0
     for line in file:
-      game_number = int(re.search('\d+', line).group())
-      game_numbers_red = re.findall('\d+ red', line)
-      max_red = max(list(map(int, (re.findall('\d+', ' '.join(game_numbers_red))))))
-      game_numbers_green = re.findall('\d+ green', line)
-      max_green = max(list(map(int, (re.findall('\d+', ' '.join(game_numbers_green))))))
-      game_numbers_blue = re.findall('\d+ blue', line)
-      max_blue = max(list(map(int, (re.findall('\d+', ' '.join(game_numbers_blue))))))
-      sum += max_red * max_green * max_blue
+      sum += max(list(map(
+          int, (re.findall('\d+', ' '.join(re.findall('\d+ red', line))))
+          ))) *\
+        max(list(map(
+          int, (re.findall('\d+', ' '.join(re.findall('\d+ green', line))))
+          ))) *\
+        max(list(map(
+          int, (re.findall('\d+', ' '.join(re.findall('\d+ blue', line))))
+          )))
     return sum
 
 print(

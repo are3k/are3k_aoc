@@ -6,9 +6,9 @@ def star_1(cards):
   sum = 0
   for c, card in enumerate(cards):
     points = 0
-    winning = findall('\d+', card.split(": ")[1].split(" | ")[0])
-    have = findall('\d+', card.split(": ")[1].split(" | ")[1])
-    for i in range(len(set(have).intersection(winning))):
+    winning = set(findall('\d+', card.split(": ")[1].split(" | ")[0]))
+    have = set(findall('\d+', card.split(": ")[1].split(" | ")[1]))
+    for i in range(len(have & winning)):
       if i == 0: points = 1
       if i > 0: points += points
     sum += points
